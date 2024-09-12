@@ -15,12 +15,14 @@
             <input type="text" placeholder="Position" name="pos">
             <input type="text" placeholder="Platoon" name="plat">
             <input type="number" placeholder="Mission Time" name="missionT">
-            <select name="status">
-                <option value="Active" > Active </option>
-                <option value="Reserve"> Reserve </option>
-                <option value="Retired"> Retired</option>
-            </select>
-            <input type="submit" value="Add Personnel">
+            <div class="create-form-buttons">
+                <select name="status">
+                    <option value="Active" > Active </option>
+                    <option value="Reserve"> Reserve </option>
+                    <option value="Retired"> Retired</option>
+                </select>
+                <input type="submit" value="Add Personnel">
+            </div>
         </form>
     </div>
     <h2 class="headers"> FORCES OVERVIEW </h2>
@@ -34,9 +36,9 @@
                 <th> STATUS </th>
                 <th> ACTIONS </th>
             </tr>
-            <tr class="tableData" id="tableData">
-                
-            </tr>
+            <tbody class="tableData" id="tableData">
+
+            </tbody>
         </table>
     </div>
 </body>

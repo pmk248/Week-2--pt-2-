@@ -1,17 +1,45 @@
 document.addEventListener("DOMContentLoaded", () => { refreshTable(); });
 
 const SOLDIERS_LIST = JSON.parse(localStorage.getItem('allSoldiers')) || [];
-const NEW_SOLDIER_FORM = document.getElementById("create-form")
-
+const NEW_SOLDIER_FORM = document.getElementById("create-form");
+const TABLE_DATA_BODY = document.querySelector("tbody");
 
 //--------- Functions ---------//
 function findById(id){
-    const index = todos.findIndex(t => t.Id === id);
-    return todos[index];
+    const index = SOLDIERS_LIST.findIndex(t => t.Id === id);
+    return SOLDIERS_LIST[index];
 };
 
+function startCountdown(id, missionButton) {
+    let soldier = findById(id); 
+    let timeLeft = soldier.missionTime; 
+
+    const intervalId = setInterval(() => {
+        if (timeLeft > 0) {
+            timeLeft--; 
+            updateMissionButton(timeLeft, missionButton); 
+            console.log(soldier);
+        } else {
+            ActionData.missionButton.innerText = "Mission Complete"; 
+        }
+    }, 1000); 
+
+    return timeLeft; 
+}
+
+function updateMissionButton(timeLeft, missionButton) {
+    missionButton.innerText = `Mission Started: (${timeLeft} seconds left)`;
+}
+
+
 function generateId(){
-    return `a`+ Math.random().toString(36).substring(2, 15);
+
+    let id =`a`+ Math.random().toString(36).substring(2, 6);
+
+    if (SOLDIERS_LIST.find(s => s.Id === id)){
+        return generateId();
+    }
+    return id;
 };
 
 function updateSoldiersList(){
@@ -48,7 +76,7 @@ function refreshTable(alphabeticalList = SOLDIERS_LIST) {
             newRow.appendChild(newData);
         };
         newRow.appendChild(addButtons(soldier));
-        tableBody.appendChild(newRow);
+        TABLE_DATA_BODY.appendChild(newRow);
     });
 }
 
@@ -74,10 +102,40 @@ NEW_SOLDIER_FORM.addEventListener('submit', (event) => {
         MissionTime: missionT,
         Status: status
     };
+
     addSoldier(renderedSoldier);
-    name.value = "";
-    rank.value = "";
-    pos.value = "";
-    plat.value = "";
-    missionT.value = "";
+    event.target.reset();
 });
+
+function addButtons(soldier) {
+    let actionData = document.createElement('td');
+
+    // "Delete" button
+    const deleteButton = document.createElement('button');
+    deleteButton.innerText = 'Delete';
+    deleteButton.style.backgroundColor = '#27AE60';
+    deleteButton.onclick = () => removeTask(soldier.Id);
+
+    // "Activate Mission + Timer button"
+    const missionButton = document.createElement('button');
+    missionButton.innerText = 'Mission Start';
+    if (soldier.Status === "Active" || soldier.Status === "Reserve") {
+        missionButton.style.display = 'inline'; 
+    } else {
+        missionButton.style.display = 'none'; 
+    }    
+    missionButton.innerText = `Mission Ends in: (${currentTime})`
+    missionButton.onclick = () => startCountdown(soldier.Id, missionButton);
+
+    // "Edit" button
+    const editButton = document.createElement('button');
+    editButton.innerText = 'Edit';
+    editButton.style.backgroundColor = '#27AE60';
+    editButton.onclick = () => openEditWindow(soldier.Id);
+
+    actionData.appendChild(missionButton);
+    actionData.appendChild(editButton);
+    actionData.appendChild(deleteButton);
+
+    return actionData;
+};

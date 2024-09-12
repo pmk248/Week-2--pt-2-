@@ -23,4 +23,21 @@ body {
 
 .create-form * {
     margin: 10px;
+    background-color: #22313F;
+    border-radius: 10px;
+    padding: 8px;
+    color: white;
+}
+
+.create-form-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #34495E;
+}
+
+.create-form-buttons input {
+    color: white;
+    background-color: #27AE60;
+    border: none;
 }
