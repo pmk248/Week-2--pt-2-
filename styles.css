@@ -22,11 +22,12 @@ body {
 }
 
 .create-form * {
-    margin: 10px;
+    margin-top: 10px;
     background-color: #22313F;
-    border-radius: 10px;
-    padding: 8px;
+    border-radius: 7px;
+    padding: 10px;
     color: white;
+    border-style: none;
 }
 
 .create-form-buttons {
@@ -40,4 +41,21 @@ body {
     color: white;
     background-color: #27AE60;
     border: none;
+}
+
+table {
+    width: 100%;
+    justify-content: center;
+}
+
+th {
+    background-color: white;
+    text-align: center;
+    height: 30px;
+}
+th button {
+    background-color: #27AE60;
+    color: white;
+    border-style: none;
+    border-radius: 4px;
 }

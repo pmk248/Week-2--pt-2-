@@ -66,7 +66,6 @@ function refreshTable(alphabeticalList = SOLDIERS_LIST) {
             Rank: soldier.Rank,
             Position: soldier.Position,
             Platoon: soldier.Platoon,
-            MissionTime: soldier.MissionTime,
             Status: soldier.Status
         };
         for (let key in rowData) {
@@ -124,7 +123,7 @@ function addButtons(soldier) {
     } else {
         missionButton.style.display = 'none'; 
     }    
-    missionButton.innerText = `Mission Ends in: (${currentTime})`
+    missionButton.innerText = `Mission Ends in: (${soldier.MissionTime})`
     missionButton.onclick = () => startCountdown(soldier.Id, missionButton);
 
     // "Edit" button
