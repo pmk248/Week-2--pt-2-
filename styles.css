@@ -46,6 +46,7 @@ body {
 table {
     width: 100%;
     justify-content: center;
+    border-spacing: none;
 }
 
 th {
@@ -62,8 +63,50 @@ th button {
 td {
     color: white;
     text-align: center;
+    justify-content: flex;
+    flex-direction: column !important;
 }
 
 tr {
     border: 1px solid white;
+}
+
+
+
+
+
+
+#edit-form-area {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    background-color: #34495E;
+    padding: 20px;
+}
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.edit-form * {
+    margin-top: 10px;
+    background-color: #22313F;
+    border-radius: 7px;
+    padding: 10px;
+    color: white;
+    border-style: none;
+}
+
+.edit-form-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #34495E;
+}
+
+.edit-form-buttons input {
+    color: white;
+    background-color: #27AE60;
+    border: none;
 }

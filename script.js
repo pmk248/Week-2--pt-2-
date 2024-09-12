@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => { refreshTable(); });
 const SOLDIERS_LIST = JSON.parse(localStorage.getItem('allSoldiers')) || [];
 const NEW_SOLDIER_FORM = document.getElementById('create-form');
 const TABLE_DATA_BODY = document.querySelector('tbody');
+const CREATE_FORM = document.querySelector('create-form');
 
 //--------- Functions ---------//
 function findById(id){
@@ -97,7 +98,7 @@ function addButtons(soldier) {
     } else {
         missionButton.style.display = 'none'; 
     }    
-    missionButton.innerText = "Mission"
+    missionButton.innerText = "Mission";
     missionButton.onclick = () => startCountdown(soldier.Id, missionButton);
 
     // "Edit" button
@@ -146,3 +147,14 @@ NEW_SOLDIER_FORM.addEventListener('submit', (event) => {
     addSoldier(renderedSoldier);
     event.target.reset();
 });
+
+// -- EDIT WINDOW -- //
+const EDIT_FORM = document.getElementById()
+let currentEdit = null;
+let isFiltered = false;
+
+function openEditWindow(id) {
+    window.open("secondpage.html");
+    let EDIT_AREA = document.findById('edit-form-area');
+    EDIT_AREA.appendChild(CREATE_FORM);
+}

@@ -8,40 +8,23 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <h2 class="headers"> BATTLE FORCE MANAGEMENT</h2>
-    <div id="create-form-area">
-        <form class="create-form" id="create-form">
+    <h1 class="headers"> EDIT PERSONNEL </h1>
+    <div id="edit-form-area">
+        <form class="edit-form" id="edit-form"></form>
             <input type="text" placeholder="Full Name" name="fname">
             <input type="text" placeholder="Rank" name="rank">
             <input type="text" placeholder="Position" name="pos">
             <input type="text" placeholder="Platoon" name="plat">
             <input type="number" placeholder="Mission Time" name="missionT">
-            <div class="create-form-buttons">
+            <div class="edit-form-buttons">
                 <select name="status">
                     <option value="Active" > Active </option>
                     <option value="Reserve"> Reserve </option>
                     <option value="Retired"> Retired</option>
                 </select>
-                <button>Save</button>
-                <button>Cancel</button>
+                <input type="edit" value="Add Personnel">
             </div>
         </form>
     </div>
-    <h2 class="headers"> FORCES OVERVIEW </h2>
-    <table>
-        <thead>
-            <tr>
-                <th><button id="filter-button"> Full Name ↓ </button></th>
-                <th> RANK </th>
-                <th> POSITION </th>
-                <th> PLATOON </th>
-                <th> STATUS </th>
-                <th> ACTIONS </th>
-            </tr>
-        </thead>
-        <tbody class="tableData" id="tableData">
-
-        </tbody>
-    </table>
 </body>
 </html>
