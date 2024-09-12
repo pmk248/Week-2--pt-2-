@@ -1,0 +1,26 @@
+body {
+    background-color: #2C3E50;
+}
+.headers {
+    color: #27AE60;
+    font-size: 25px;
+    text-align: center;
+    border-bottom: 4px solid #27AE60;
+
+}
+#create-form-area {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    background-color: #34495E;
+    padding: 20px;
+}
+.create-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.create-form * {
+    margin: 10px;
+}

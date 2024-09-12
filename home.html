@@ -10,15 +10,17 @@
     <h2 class="headers"> BATTLE FORCE MANAGEMENT</h2>
     <div id="create-form-area">
         <form class="create-form" id="create-form">
-            <input type="text" placeholder="Full Name" id="Fname">
-            <input type="text" placeholder="Position" id="pos">
-            <input type="text" placeholder="Platoon" id="plat">
-            <select id="status">
-                <option value=""> Add Personnel </option>
-                <option value="Active"> Active </option>
+            <input type="text" placeholder="Full Name" name="fname">
+            <input type="text" placeholder="Rank" name="rank">
+            <input type="text" placeholder="Position" name="pos">
+            <input type="text" placeholder="Platoon" name="plat">
+            <input type="number" placeholder="Mission Time" name="missionT">
+            <select name="status">
+                <option value="Active" > Active </option>
                 <option value="Reserve"> Reserve </option>
                 <option value="Retired"> Retired</option>
             </select>
+            <input type="submit" value="Add Personnel">
         </form>
     </div>
     <h2 class="headers"> FORCES OVERVIEW </h2>
@@ -32,9 +34,9 @@
                 <th> STATUS </th>
                 <th> ACTIONS </th>
             </tr>
-            <td class="tableData" id="tableData">
-
-            </td>
+            <tr class="tableData" id="tableData">
+                
+            </tr>
         </table>
     </div>
 </body>
