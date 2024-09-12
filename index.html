@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <h2 class="headers"> BATTLE FORCE MANAGEMENT</h2>
@@ -26,8 +27,8 @@
         </form>
     </div>
     <h2 class="headers"> FORCES OVERVIEW </h2>
-    <div id="battalion-table-area">
-        <table>
+    <table>
+        <thead>
             <tr>
                 <th><button id="filter-button"> Full Name ↓ </button></th>
                 <th> RANK </th>
@@ -36,10 +37,10 @@
                 <th> STATUS </th>
                 <th> ACTIONS </th>
             </tr>
-            <tbody class="tableData" id="tableData">
+        </thead>
+        <tbody class="tableData" id="tableData">
 
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
 </body>
 </html>

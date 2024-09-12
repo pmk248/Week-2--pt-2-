@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => { refreshTable(); });
 
 const SOLDIERS_LIST = JSON.parse(localStorage.getItem('allSoldiers')) || [];
-const NEW_SOLDIER_FORM = document.getElementById("create-form");
-const TABLE_DATA_BODY = document.querySelector("tbody");
+const NEW_SOLDIER_FORM = document.getElementById('create-form');
+const TABLE_DATA_BODY = document.querySelector('tbody');
 
 //--------- Functions ---------//
 function findById(id){
@@ -15,12 +15,12 @@ function startCountdown(id, missionButton) {
     let timeLeft = soldier.missionTime; 
 
     const intervalId = setInterval(() => {
+        clearInterval(intervalId)
         if (timeLeft > 0) {
             timeLeft--; 
             updateMissionButton(timeLeft, missionButton); 
-            console.log(soldier);
         } else {
-            ActionData.missionButton.innerText = "Mission Complete"; 
+            ActionData.missionButton.innerText = "Mission"; 
         }
     }, 1000); 
 
@@ -28,7 +28,7 @@ function startCountdown(id, missionButton) {
 }
 
 function updateMissionButton(timeLeft, missionButton) {
-    missionButton.innerText = `Mission Started: (${timeLeft} seconds left)`;
+    missionButton.innerText = `Mission (${timeLeft})`;
 }
 
 
@@ -54,7 +54,7 @@ function addSoldier(renderedSoldier){
 
 function refreshTable(alphabeticalList = SOLDIERS_LIST) {
 
-    tableBody.innerHTML = '';
+    TABLE_DATA_BODY.innerHTML = '';
 
     alphabeticalList.forEach(soldier =>{
 
@@ -78,6 +78,47 @@ function refreshTable(alphabeticalList = SOLDIERS_LIST) {
         TABLE_DATA_BODY.appendChild(newRow);
     });
 }
+
+function addButtons(soldier) {
+    let actionData = document.createElement('td');
+
+    // "Delete" button
+    const deleteButton = document.createElement('button');
+    deleteButton.innerText = 'Delete';
+    deleteButton.style.backgroundColor = '#27AE60';
+    deleteButton.onclick = () => removeSoldier(soldier.Id);
+
+    // "Activate Mission + Timer button"
+    const missionButton = document.createElement('button');
+    missionButton.innerText = 'Mission Start';
+    if (soldier.Status === "Active" || soldier.Status === "Reserve") {
+        missionButton.style=" display: 'inline' "; 
+        
+    } else {
+        missionButton.style.display = 'none'; 
+    }    
+    missionButton.innerText = "Mission"
+    missionButton.onclick = () => startCountdown(soldier.Id, missionButton);
+
+    // "Edit" button
+    const editButton = document.createElement('button');
+    editButton.innerText = 'Edit';
+    editButton.style.backgroundColor = '#27AE60';
+    editButton.onclick = () => openEditWindow(soldier.Id);
+
+    actionData.appendChild(missionButton);
+    actionData.appendChild(editButton);
+    actionData.appendChild(deleteButton);
+
+    return actionData;
+};
+
+function removeSoldier(id) {
+    let index = SOLDIERS_LIST.findIndex(s => s.Id === id)
+    SOLDIERS_LIST.splice(index, 1);
+    updateSoldiersList();
+    refreshTable();
+};
 
 //--------- Event Listeners ---------//
 
@@ -105,36 +146,3 @@ NEW_SOLDIER_FORM.addEventListener('submit', (event) => {
     addSoldier(renderedSoldier);
     event.target.reset();
 });
-
-function addButtons(soldier) {
-    let actionData = document.createElement('td');
-
-    // "Delete" button
-    const deleteButton = document.createElement('button');
-    deleteButton.innerText = 'Delete';
-    deleteButton.style.backgroundColor = '#27AE60';
-    deleteButton.onclick = () => removeTask(soldier.Id);
-
-    // "Activate Mission + Timer button"
-    const missionButton = document.createElement('button');
-    missionButton.innerText = 'Mission Start';
-    if (soldier.Status === "Active" || soldier.Status === "Reserve") {
-        missionButton.style.display = 'inline'; 
-    } else {
-        missionButton.style.display = 'none'; 
-    }    
-    missionButton.innerText = `Mission Ends in: (${soldier.MissionTime})`
-    missionButton.onclick = () => startCountdown(soldier.Id, missionButton);
-
-    // "Edit" button
-    const editButton = document.createElement('button');
-    editButton.innerText = 'Edit';
-    editButton.style.backgroundColor = '#27AE60';
-    editButton.onclick = () => openEditWindow(soldier.Id);
-
-    actionData.appendChild(missionButton);
-    actionData.appendChild(editButton);
-    actionData.appendChild(deleteButton);
-
-    return actionData;
-};

@@ -56,6 +56,14 @@ th {
 th button {
     background-color: #27AE60;
     color: white;
-    border-style: none;
     border-radius: 4px;
+    border-style: none;
+}
+td {
+    color: white;
+    text-align: center;
+}
+
+tr {
+    border: 1px solid white;
 }
